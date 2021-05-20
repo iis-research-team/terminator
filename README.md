@@ -15,7 +15,12 @@ To install:
 To use this tool one should download the files:
 1. For terms extraction download weights file from here and put it to `terms_extractor/dl_extractor/weights`
 2. For relation extraction ...
-3. For entity linking ...
+3. For entity linking:
+
+ 3.1. Download prepocessed wikidata dump from here and put it to `entity_linker/wikidata_dump`;
+ 
+ 3.2. Download fasttext model from [here](http://files.deeppavlov.ai/embeddings/ft_native_300_ru_wiki_lenta_remstopwords/ft_native_300_ru_wiki_lenta_remstopwords.bin)
+ and put it to `entity_linker/fasttext_model`.
 
 ## How to use
 
@@ -33,6 +38,22 @@ text = 'Научные вычисления включают прикладну�
 result = combined_extractor.extract(text)
 for token, tag in result:
     print(f'{token} -> {tag}')
+```
+
+### Relation extraction
+
+### Entity linking
+
+This module links terms with entities in Wikidata. 
+It requires extracted terms and their context as input.
+
+```python
+from entity_linker.entity_linker import RussianEntityLinker
+
+ru_el = RussianEntityLinker()
+term = 'язык программирования Python'
+context = ['язык программирования Python', 'использовался', 'в']
+print(ru_el.get_linked_mention(term, context))
 ```
 
 ## Citation

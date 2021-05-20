@@ -1,6 +1,10 @@
 ahocorapy == 1.6.1
+fasttext
 nltk == 3.6.2
 numpy == 1.20.3
+orjson
 pymorphy2 == 0.9.1
+pymystem3
+sklearn
 tensorflow == 2.5.0
 transformers == 4.6.0
