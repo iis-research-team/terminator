@@ -17,7 +17,8 @@ To use this tool one should download the files:
 2. For relation extraction ...
 3. For entity linking:
 
- 3.1. Download prepocessed wikidata dump from here and put it to `entity_linker/wikidata_dump`;
+ 3.1. Download prepocessed wikidata dump from [here](https://drive.google.com/file/d/1pkVAsjqsUlJBWvU1322jm9fDvWHfsXoQ/view?usp=sharing),
+  unzip and put it to `entity_linker/wikidata_dump`;
  
  3.2. Download fasttext model from [here](http://files.deeppavlov.ai/embeddings/ft_native_300_ru_wiki_lenta_remstopwords/ft_native_300_ru_wiki_lenta_remstopwords.bin)
  and put it to `entity_linker/fasttext_model`.
