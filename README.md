@@ -43,6 +43,8 @@ for token, tag in result:
 
 ### Relation extraction
 
+_in progress_
+
 ### Entity linking
 
 This module links terms with entities in Wikidata. 
