@@ -45,7 +45,7 @@ class DLExtractor(BaseExtractor):
             )
             preds = self._model.predict([np.array([input_ids]), np.array([input_masks])])[0]
             all_bpe_tokens.extend(bpe_tokens)
-            all_predictions.extend(preds)
+            all_predictions.extend(preds[:len(bpe_tokens)])
 
         result = self._get_preds_with_tokens(all_bpe_tokens, all_predictions)
         result = self._heuristic_validator.validate(result)
