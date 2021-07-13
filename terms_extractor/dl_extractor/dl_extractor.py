@@ -43,7 +43,7 @@ class DLExtractor(BaseExtractor):
             bpe_tokens, input_ids, input_masks, tags = self._vectorizer.vectorize(
                 tokens[start: end], labels[start: end]
             )
-            preds = self._model.predict([np.array([input_ids]), np.array([input_masks])])[0]
+            preds = self._model.predict([np.array([input_ids]), np.array([input_masks])])[0][0]
             all_bpe_tokens.extend(bpe_tokens)
             all_predictions.extend(preds[:len(bpe_tokens)])
 

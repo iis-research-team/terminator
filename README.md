@@ -13,7 +13,8 @@ To install:
 `git clone https://github.com/iis-research-team/Terminator.git`
 
 To use this tool one should download the files:
-1. For terms extraction download weights file from here and put it to `terms_extractor/dl_extractor/weights`
+1. For terms extraction download weights file from [here](https://drive.google.com/file/d/1d-p1kJ391wTG8t0WkYWBZ5l8Ph2hNkxd/view?usp=sharing) 
+and put it to `terms_extractor/dl_extractor/weights`
 2. For relation extraction ...
 3. For entity linking:
 
