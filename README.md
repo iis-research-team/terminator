@@ -15,7 +15,8 @@ To install:
 To use this tool one should download the files:
 1. For terms extraction download weights file from [here](https://drive.google.com/file/d/1d-p1kJ391wTG8t0WkYWBZ5l8Ph2hNkxd/view?usp=sharing) 
 and put it to `terms_extractor/dl_extractor/weights`
-2. For relation extraction ...
+2. For relation extraction download weights file from [here](https://drive.google.com/file/d/11LMTNf-u7BY6hzeFAR5jWW7x7jGaRef3/view?usp=sharing)
+and put it to `relation_extractor/dl_relation_extractor/weights`
 3. For entity linking:
 
  3.1. Download prepocessed wikidata dump from [here](https://drive.google.com/file/d/1pkVAsjqsUlJBWvU1322jm9fDvWHfsXoQ/view?usp=sharing),
@@ -44,7 +45,32 @@ for token, tag in result:
 
 ### Relation extraction
 
-_in progress_
+This module extracts relations between two terms. To extract relations it requires dict with the following keys:
+```json
+{
+  "token": "list of tokens for a given sentence",
+  "subj_start": "int, position of the first token for the subject term",
+  "subj_end": "int, position of the last token for the subject term",
+  "obj_start": "int, position of the first token for the object term",
+  "obj_end": "int, position of the last token for the object term"
+}
+```
+
+Example of relation extraction:
+```python
+from relation_extractor.combined_relation_extractor.combined_relation_extractor import CombinedRelationExtractor
+
+combined_extractor = CombinedRelationExtractor()
+sample = {
+    'token': ['извлечение', 'отношений', '-', 'это', 'задача', 'NLP'],
+    'subj_start': 0,
+    'subj_end': 1,
+    'obj_start': 5,
+    'obj_end': 5 
+}
+
+relation = combined_extractor.extract(sample)
+```
 
 ### Entity linking
 
@@ -63,4 +89,8 @@ print(ru_el.get_linked_mention(term, context))
 ## Citation
 
 If you use this project, please cite this paper:
-...
+
+Elena Bruches, Anastasia Mezentseva, Tatiana Batura. 
+A system for information extraction from scientific texts in Russian. 2021.
+
+Link: https://arxiv.org/abs/2109.06703
