@@ -10,16 +10,16 @@ class Tags(Enum):
 TERM_SET = {Tags.B_TERM.value, Tags.I_TERM.value}
 
 label2class = {
-            Tags.NOT_TERM.value: 0,
-            Tags.B_TERM.value: 1,
-            Tags.I_TERM.value: 2
-        }
+    Tags.NOT_TERM.value: 0,
+    Tags.B_TERM.value: 1,
+    Tags.I_TERM.value: 2
+}
 
 class2label = {
-            0: Tags.NOT_TERM.value,
-            1: Tags.B_TERM.value,
-            2: Tags.I_TERM.value
-        }
+    0: Tags.NOT_TERM.value,
+    1: Tags.B_TERM.value,
+    2: Tags.I_TERM.value
+}
 
 re_class2label = {
     0: 'USED-FOR',
@@ -38,4 +38,30 @@ RUSSERC_TO_RC_SCIENCE_LABELS = {
     'TOOL': 'USED-FOR',
     'COMPARE': 'COMPARE',
     'NO-RELATION': 'NO-RELATION'
+}
+
+aspects_class2label = {
+    0: 'O',
+    1: 'Goal',
+    2: 'Task',
+    3: 'Contrib',
+    4: 'Method',
+    5: 'Tool',
+    6: 'Adv',
+    7: 'Use',
+    8: 'Conc',
+    9: 'Example'
+}
+
+aspects_label2class = {
+    'O': 0,
+    'Goal': 1,
+    'Task': 2,
+    'Contrib': 3,
+    'Method': 4,
+    'Tool': 5,
+    'Adv': 6,
+    'Use': 7,
+    'Conc': 8,
+    'Example': 9
 }
