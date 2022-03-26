@@ -210,7 +210,7 @@ class HeuristicValidator:
                 return True
         return False
 
-    def __check_normal_form(self, parses: List[Parse]) -> bool:
+    def __check_normal_form(self, parses: List[Parse]) -> List[str]:
         normal_forms = []
         for parse in parses:
             normal_forms.append(parse.normal_form)
