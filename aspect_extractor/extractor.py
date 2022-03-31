@@ -11,7 +11,7 @@ from aspect_extractor.vectorizer import Vectorizer
 from aspect_extractor.heuristic_validator import HeuristicValidator
 
 
-class AspectExtractor():
+class AspectExtractor:
     """ Класс для извлечения аспектов из текста с помощью модели """
 
     def __init__(self):
@@ -176,11 +176,4 @@ class AspectExtractor():
         result.append((token_str, tag_union))
 
 
-if __name__ == '__main__':
-    extractor = AspectExtractor()
-    text = "Определена модель для визуализации связей между объектами и их атрибутами в различных процессах. " \
-           "На основании модели разработан универсальный абстрактный компонент графического пользовательского интерфейса и приведены примеры его программной реализации. " \
-           "Также проведена апробация компонента для решения прикладной задачи по извлечению информации из документов."
-    result = extractor.extract(text)
-    for token, tag in result:
-        print(f'{token} -> {tag}')
+
