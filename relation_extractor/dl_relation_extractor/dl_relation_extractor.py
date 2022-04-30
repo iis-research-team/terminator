@@ -13,20 +13,17 @@ class DLRelationExtractor:
 
     def __init__(self):
         self._vectorizer = Vectorizer()
-        self._model_dir = RELATION_EXTRACTOR_WEIGHTS_PATH
-        self._label_lst = RE_LABELS
-        self._num_labels = len(self._label_lst)
         self._config = BertConfig.from_pretrained(
-            self._model_dir,
-            num_labels=self._num_labels,
-            id2label={str(i): label for i, label in enumerate(self._label_lst)},
-            label2id={label: i for i, label in enumerate(self._label_lst)},
+            RELATION_EXTRACTOR_WEIGHTS_PATH,
+            num_labels=len(RE_LABELS),
+            id2label={str(i): label for i, label in enumerate(RE_LABELS)},
+            label2id={label: i for i, label in enumerate(RE_LABELS)},
         )
         self._model_args = torch.load(os.path.join(RELATION_EXTRACTOR_WEIGHTS_PATH, 'training_args.bin'))
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
-        self._model = get_model(self._model_dir, self._config, self._model_args, self._device)
+        self._model = get_model(RELATION_EXTRACTOR_WEIGHTS_PATH, self._config, self._model_args, self._device)
 
-    def extract(self, text):
+    def extract(self, text: str) -> str:
 
         # Convert text into features
         input_ids, attention_mask, token_type_ids, e1_mask, e2_mask = self._vectorizer.vectorize(text, args=self._model_args, add_sep_token=['add_sep_token'])
@@ -46,6 +43,6 @@ class DLRelationExtractor:
             pred = logits.detach().cpu().numpy()
 
         pred = np.argmax(pred, axis=1)
-        pred = self._label_lst[int(pred)]
+        pred = RE_LABELS[int(pred)]
 
         return pred
