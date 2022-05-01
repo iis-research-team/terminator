@@ -65,3 +65,6 @@ aspects_label2class = {
     'Conc': 8,
     'Example': 9
 }
+
+ADDITIONAL_SPECIAL_TOKENS = ["<e1>", "</e1>", "<e2>", "</e2>"]
+RE_LABELS = ["PART_OF", "ISA", "USAGE", "TOOL", "SYNONYMS", "COMPARE", "CAUSE", "NO-RELATION"]

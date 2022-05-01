@@ -10,7 +10,7 @@ ASPECT_EXTRACTOR_PATH = os.path.join(PROJECT_PATH, 'aspect_extractor')
 
 TERMS_EXTRACTOR_WEIGHTS_PATH = os.path.join(TERMS_EXTRACTOR_PATH, 'dl_extractor/weights', 'weights.h5')
 RELATION_EXTRACTOR_WEIGHTS_PATH = os.path.join(
-    RELATION_EXTRACTOR_PATH, 'dl_relation_extractor/weights', 're_bert_freeze_weights.h5'
+    RELATION_EXTRACTOR_PATH, 'dl_relation_extractor/weights'
 )
 ASPECT_EXTRACTOR_WEIGHTS_PATH = os.path.join(ASPECT_EXTRACTOR_PATH, 'weights', 'weights.h5')
 
