@@ -1,14 +1,5 @@
 from entity_linker.entity_linking_pipeline.candidates_ranger.base_ranger import BaseCandidatesRanger
 from entity_linker.entity_linking_pipeline.candidates_ranger.cosine_sim_ranger import CosineSimRanger
 from entity_linker.entity_linking_pipeline.candidates_ranger.cosine_sim_with_weights import CosineSimRangerWeights
-from entity_linker.entity_linking_pipeline.candidates_ranger.model_ranger import ModelRanger
-from entity_linker.entity_linking_pipeline.candidates_ranger.logreg_ranger import LogregRanger
-from entity_linker.entity_linking_pipeline.candidates_ranger.casboost_ranger import CatboostRanger
-from entity_linker.entity_linking_pipeline.candidates_ranger.base_dl_ranger import BaseDLRanger
-from entity_linker.entity_linking_pipeline.candidates_ranger.cnn_ranger import CNNRanger
-from entity_linker.entity_linking_pipeline.candidates_ranger.two_head_ranger import TwoHeadRanger
-from entity_linker.entity_linking_pipeline.candidates_ranger.three_head_ranger import ThreeHeadRanger
 
-
-__all__ = [BaseCandidatesRanger, CosineSimRanger, CosineSimRangerWeights, ModelRanger, LogregRanger, CatboostRanger,
-           BaseDLRanger, CNNRanger, TwoHeadRanger, ThreeHeadRanger]
+__all__ = [BaseCandidatesRanger, CosineSimRanger, CosineSimRangerWeights]
