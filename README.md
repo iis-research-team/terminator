@@ -14,22 +14,22 @@ To install:
 `git clone https://github.com/iis-research-team/Terminator.git`
 
 To use this tool one should download the files:
-1. For terms extraction download weights file from [here](https://drive.google.com/file/d/1d-p1kJ391wTG8t0WkYWBZ5l8Ph2hNkxd/view?usp=sharing) 
+1. For terms extraction download weights file from [here](https://drive.google.com/file/d/1ed4aCPPnP4Yvl5k_OmhB8eYgnSNlcM1n/view?usp=sharing) 
 and put it to `terms_extractor/dl_extractor/weights`
 
 2. For relation extraction: 
 
- 2.1. Download config file from [here](https://drive.google.com/file/d/1DVCGOWx-Oe2rS3k-NI9ESvQyEhg5x72S/view?usp=sharing)
+ 2.1. Download config file from [here](https://drive.google.com/file/d/1JtD3-GAs58xqrKiquFtcSsrV42DeGE0r/view?usp=sharing)
  
- 2.2. Download model file from [here](https://drive.google.com/file/d/12nVVjneuzUVuoyw0d7eIYWC_7ViVQ_l5/view?usp=sharing)
+ 2.2. Download model file from [here](https://drive.google.com/file/d/1ksg-ZXDa8Fd10w3wPNxU8j-bk8B2YhTb/view?usp=sharing)
  
- 2.3. Download model arguments file from [here](https://drive.google.com/file/d/1miUfpxmgXN0a9G5_jehvYHM98N-8Ixge/view?usp=sharing)
+ 2.3. Download model arguments file from [here](https://drive.google.com/file/d/1IvCCwj7-68MFx71bFX9kkUm_A1RQzxs-/view?usp=sharing)
 
  and put it all to `relation_extractor/dl_relation_extractor/weights`
 
 3. For entity linking:
 
- 3.1. Download prepocessed wikidata dump from [here](https://drive.google.com/file/d/1pkVAsjqsUlJBWvU1322jm9fDvWHfsXoQ/view?usp=sharing),
+ 3.1. Download prepocessed wikidata dump from [here](https://drive.google.com/file/d/1cSWLrbpq3f4PtRkAgIKiw_UNhshTgQOx/view?usp=sharing),
   unzip and put it to `entity_linker/wikidata_dump`;
  
  3.2. Download fasttext model from [here](http://files.deeppavlov.ai/embeddings/ft_native_300_ru_wiki_lenta_remstopwords/ft_native_300_ru_wiki_lenta_remstopwords.bin)
