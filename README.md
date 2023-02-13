@@ -102,6 +102,10 @@ for token, tag in result:
     print(f'{token} -> {tag}')
 ```
 
+## Data
+
+[RuSERRC](https://github.com/iis-research-team/ruserrc-dataset) is the dataset of scientific texts in Russian, which is annotated with terms, aspects, linked entities, and relations. 
+
 ## Citation
 
 If you find this repository useful, feel free to cite our papers:
