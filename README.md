@@ -104,9 +104,26 @@ for token, tag in result:
 
 ## Citation
 
-If you use this project, please cite this paper:
+If you find this repository useful, feel free to cite our papers:
 
-Elena Bruches, Anastasia Mezentseva, Tatiana Batura. 
-A system for information extraction from scientific texts in Russian. 2021.
-
-Link: https://arxiv.org/abs/2109.06703
+Bruches E., Tikhobaeva O., Dementyeva Y., Batura T. [TERMinator: A System for Scientific Texts Processing](https://aclanthology.org/2022.coling-1.302). In Proceedings of the 29th International Conference on Computational Linguistics (COLING 2022). International Committee on Computational Linguistics. 2022. pp. 3420–3426.
+```
+@inproceedings{terminator2022,
+    title={{TERM}inator: A System for Scientific Texts Processing},
+    author={Bruches, Elena and Tikhobaeva, Olga and Dementyeva, Yana and Batura, Tatiana},
+    booktitle={Proceedings of the 29th International Conference on Computational Linguistics},
+    year={2022},
+    pages={3420--3426}
+}
+```
+Bruches E., Mezentseva A., Batura T. [A system for information extraction from scientific texts in Russian](https://arxiv.org/pdf/2109.06703.pdf). Data Analytics and Management in Data Intensive Domains. DAMDID/RCDL 2021. Communications in Computer and Information Science. Springer, Cham, 2022. vol. 1620. pp. 234–245.
+```
+@inproceedings{ruserrc,
+  title={A system for information extraction from scientific texts in Russian},
+  author={Bruches, Elena and Mezentseva, Anastasia and Batura, Tatiana},
+  booktitle={Data Analytics and Management in Data Intensive Domains. DAMDID/RCDL 2021. Communications in Computer and Information Science},
+  volume={1620}
+  pages={234--245},
+  year={2022}
+}
+```
