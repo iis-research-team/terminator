@@ -14,13 +14,22 @@ To install:
 `git clone https://github.com/iis-research-team/Terminator.git`
 
 To use this tool one should download the files:
-1. For terms extraction download weights file from [here](https://drive.google.com/file/d/1d-p1kJ391wTG8t0WkYWBZ5l8Ph2hNkxd/view?usp=sharing) 
+1. For terms extraction download weights file from [here](https://drive.google.com/file/d/1ed4aCPPnP4Yvl5k_OmhB8eYgnSNlcM1n/view?usp=sharing) 
 and put it to `terms_extractor/dl_extractor/weights`
-2. For relation extraction download weights file from [here](https://drive.google.com/file/d/11LMTNf-u7BY6hzeFAR5jWW7x7jGaRef3/view?usp=sharing)
-and put it to `relation_extractor/dl_relation_extractor/weights`
+
+2. For relation extraction: 
+
+ 2.1. Download config file from [here](https://drive.google.com/file/d/1JtD3-GAs58xqrKiquFtcSsrV42DeGE0r/view?usp=sharing)
+ 
+ 2.2. Download model file from [here](https://drive.google.com/file/d/1ksg-ZXDa8Fd10w3wPNxU8j-bk8B2YhTb/view?usp=sharing)
+ 
+ 2.3. Download model arguments file from [here](https://drive.google.com/file/d/1IvCCwj7-68MFx71bFX9kkUm_A1RQzxs-/view?usp=sharing)
+
+ and put it all to `relation_extractor/dl_relation_extractor/weights`
+
 3. For entity linking:
 
- 3.1. Download prepocessed wikidata dump from [here](https://drive.google.com/file/d/1pkVAsjqsUlJBWvU1322jm9fDvWHfsXoQ/view?usp=sharing),
+ 3.1. Download prepocessed wikidata dump from [here](https://drive.google.com/file/d/1cSWLrbpq3f4PtRkAgIKiw_UNhshTgQOx/view?usp=sharing),
   unzip and put it to `entity_linker/wikidata_dump`;
  
  3.2. Download fasttext model from [here](http://files.deeppavlov.ai/embeddings/ft_native_300_ru_wiki_lenta_remstopwords/ft_native_300_ru_wiki_lenta_remstopwords.bin)
@@ -48,29 +57,17 @@ for token, tag in result:
 
 ### Relation extraction
 
-This module extracts relations between two terms. To extract relations it requires dict with the following keys:
-```json
-{
-  "token": "list of tokens for a given sentence",
-  "subj_start": "int, position of the first token for the subject term",
-  "subj_end": "int, position of the last token for the subject term",
-  "obj_start": "int, position of the first token for the object term",
-  "obj_end": "int, position of the last token for the object term"
-}
-```
+This module extracts relations between two terms. 
+To extract relations it requires text with terms highlighted by special tokens.
 
 Example of relation extraction:
+
 ```python
 from relation_extractor.combined_relation_extractor.combined_relation_extractor import CombinedRelationExtractor
 
 combined_extractor = CombinedRelationExtractor()
-sample = {
-    'token': ['извлечение', 'отношений', '-', 'это', 'задача', 'NLP'],
-    'subj_start': 0,
-    'subj_end': 1,
-    'obj_start': 5,
-    'obj_end': 5 
-}
+sample = '<e1>Модель</e1> используется в методе генерации и определения форм слов для решения ' \ 
+         '<e2>задач морфологического синтеза</e2> и анализа текстов.'
 
 relation = combined_extractor.extract(sample)
 ```
@@ -103,11 +100,33 @@ text = "Определена модель для визуализации свя
 print(extractor.stringify_extracted_aspects(text = text))
 ```
 
+## Data
+
+[RuSERRC](https://github.com/iis-research-team/ruserrc-dataset) is the dataset of scientific texts in Russian, which is annotated with terms, aspects, linked entities, and relations. 
+
 ## Citation
 
-If you use this project, please cite this paper:
 
-Elena Bruches, Anastasia Mezentseva, Tatiana Batura. 
-A system for information extraction from scientific texts in Russian. 2021.
+If you find this repository useful, feel free to cite our papers:
 
-Link: https://arxiv.org/abs/2109.06703
+Bruches E., Tikhobaeva O., Dementyeva Y., Batura T. [TERMinator: A System for Scientific Texts Processing](https://aclanthology.org/2022.coling-1.302). In Proceedings of the 29th International Conference on Computational Linguistics (COLING 2022). International Committee on Computational Linguistics. 2022. pp. 3420–3426.
+```
+@inproceedings{terminator2022,
+    title={{TERM}inator: A System for Scientific Texts Processing},
+    author={Bruches, Elena and Tikhobaeva, Olga and Dementyeva, Yana and Batura, Tatiana},
+    booktitle={Proceedings of the 29th International Conference on Computational Linguistics},
+    year={2022},
+    pages={3420--3426}
+}
+```
+Bruches E., Mezentseva A., Batura T. [A system for information extraction from scientific texts in Russian](https://arxiv.org/pdf/2109.06703.pdf). Data Analytics and Management in Data Intensive Domains. DAMDID/RCDL 2021. Communications in Computer and Information Science. Springer, Cham, 2022. vol. 1620. pp. 234–245.
+```
+@inproceedings{ruserrc,
+  title={A system for information extraction from scientific texts in Russian},
+  author={Bruches, Elena and Mezentseva, Anastasia and Batura, Tatiana},
+  booktitle={Data Analytics and Management in Data Intensive Domains. DAMDID/RCDL 2021. Communications in Computer and Information Science},
+  volume={1620}
+  pages={234--245},
+  year={2022}
+}
+```

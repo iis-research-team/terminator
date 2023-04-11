@@ -1,0 +1,4 @@
+from entity_linker.entity_linking_pipeline.candidates_generator.base_candidates_generator import BaseCandidatesGenerator
+from entity_linker.entity_linking_pipeline.candidates_generator.string_match_candidates_generator import StringMatchCandidatesGenerator
+
+__all__ = [BaseCandidatesGenerator, StringMatchCandidatesGenerator]

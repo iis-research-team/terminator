@@ -1,7 +1,10 @@
+import torch
+import os
 import numpy as np
 
-from utils.constants import re_class2label
+from transformers import BertConfig
 from utils.paths import RELATION_EXTRACTOR_WEIGHTS_PATH
+from utils.constants import RE_LABELS
 from relation_extractor.dl_relation_extractor.model import get_model
 from relation_extractor.dl_relation_extractor.vectorizer import Vectorizer
 
@@ -9,25 +12,37 @@ from relation_extractor.dl_relation_extractor.vectorizer import Vectorizer
 class DLRelationExtractor:
 
     def __init__(self):
-
         self._vectorizer = Vectorizer()
+        self._config = BertConfig.from_pretrained(
+            RELATION_EXTRACTOR_WEIGHTS_PATH,
+            num_labels=len(RE_LABELS),
+            id2label={str(i): label for i, label in enumerate(RE_LABELS)},
+            label2id={label: i for i, label in enumerate(RE_LABELS)},
+        )
+        self._model_args = torch.load(os.path.join(RELATION_EXTRACTOR_WEIGHTS_PATH, 'training_args.bin'))
+        self._device = "cuda" if torch.cuda.is_available() else "cpu"
+        self._model = get_model(RELATION_EXTRACTOR_WEIGHTS_PATH, self._config, self._model_args, self._device)
 
-        self._model = get_model('bert_for_sequence_classification', num_labels=len(re_class2label))
-        self._model.load_weights(RELATION_EXTRACTOR_WEIGHTS_PATH)
+    def extract(self, text: str) -> str:
 
-    def extract(self, sample: dict) -> str:
-        text_sample = sample['token']
+        # Convert text into features
+        input_ids, attention_mask, token_type_ids, e1_mask, e2_mask = self._vectorizer.vectorize(text, args=self._model_args, add_sep_token=['add_sep_token'])
 
-        X_ids = []
-        X_masks = []
+        # Predict
+        with torch.no_grad():
+            inputs = {
+                "input_ids": input_ids,
+                "attention_mask": attention_mask,
+                "token_type_ids": token_type_ids,
+                "labels": None,
+                "e1_mask": e1_mask,
+                "e2_mask": e2_mask,
+            }
+            outputs = self._model(**inputs)
+            logits = outputs[0]
+            pred = logits.detach().cpu().numpy()
 
-        _, input_ids, input_masks, tag = self._vectorizer.vectorize(text_sample, 'NO-RELATION')
-        X_ids.append(np.array(input_ids))
-        X_masks.append(np.array(input_masks))
+        pred = np.argmax(pred, axis=1)
+        pred = RE_LABELS[int(pred)]
 
-        pred = self._model.predict_on_batch(
-            [np.asarray(X_ids, dtype='int32'), np.asarray(X_masks, dtype='int32')]
-        )[0][0]
-        ml_pred = re_class2label[np.argmax(pred)]
-
-        return ml_pred
+        return pred

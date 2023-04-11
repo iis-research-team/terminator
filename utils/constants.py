@@ -54,5 +54,9 @@ aspects_label2class = {
     'Conc': 3
 }
 
+
 ASPECTS_PRETRAINED_MODEL_NAME = 'bert-base-multilingual-cased'
 ASPECTS_NUM_LABELS = 4
+
+ADDITIONAL_SPECIAL_TOKENS = ["<e1>", "</e1>", "<e2>", "</e2>"]
+RE_LABELS = ["PART_OF", "ISA", "USAGE", "TOOL", "SYNONYMS", "COMPARE", "CAUSE", "NO-RELATION"]
