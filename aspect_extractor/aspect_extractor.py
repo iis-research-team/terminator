@@ -15,7 +15,8 @@ nltk.download('punkt')
 
 class AspectExtractor:
     """ Класс для извлечения аспектов как словосочетаний"""
-    def __init__(self, normalize:bool=True):
+
+    def __init__(self, normalize: bool = True):
         """
         :param normalize: Ставить ли извлеченные аспекты в начальную форму
         """
@@ -23,11 +24,12 @@ class AspectExtractor:
         self._PAIRED_R2L = dict(zip(self._PAIRED_L2R.values(), self._PAIRED_L2R.keys()))
         self._UNPAIRED_PUNCT = ".,:;!?%^"
         self._SYMM_QUOTES = ['"']
-        self._TRANSLATIONS = {'Task': ('Задача', 'Задачи'), 'Method': ('Метод', 'Методы'), 'Contrib': ('Вклад', 'Вклад'),
-                             'Conc': ('Вывод', 'Выводы')}
+        self._TRANSLATIONS = {'Task': ('Задача', 'Задачи'), 'Method': ('Метод', 'Методы'),
+                              'Contrib': ('Вклад', 'Вклад'),
+                              'Conc': ('Вывод', 'Выводы')}
         # маппинг обозначений граммем из spacy в pymorphy2
         self._GRAMMEME_MAPPING = {'Fem': 'femn', 'Masc': 'masc', 'Neut': 'neut', 'Plur': 'plur', 'Sing': 'sing'}
-        #части речи, согласуемые с существительным
+        # части речи, согласуемые с существительным
         self._NOUN_DEP = ['appos', 'acl', 'amod', 'det', 'clf', 'nummod']
         self.do_normalize = normalize
         self._predictor = Predictor()
@@ -46,8 +48,8 @@ class AspectExtractor:
         number = self._GRAMMEME_MAPPING.get(''.join(token.morph.get("Number")), 'sing')
         gender = self._GRAMMEME_MAPPING.get(''.join(token.morph.get("Gender")), 'masc')
         if number == 'plur':
-            return set([number]) #если число множественное, согласовывать будем по числу
-        return set([gender]) #если число единственное, согласовываем по роду
+            return set([number])  # если число множественное, согласовывать будем по числу
+        return set([gender])  # если число единственное, согласовываем по роду
 
     def __inflect(self, token: str, pos: List[str] = [], grammemes=set(['nomn'])) -> str:
         """
@@ -60,7 +62,8 @@ class AspectExtractor:
         parses = self._morph.parse(token)
         parse = parses[0]
         for parse in parses:
-            if any(parse.tag.POS.startswith(prefix) for prefix in pos if parse.tag.POS): #поиск формы нужной части речи
+            if any(parse.tag.POS.startswith(prefix) for prefix in pos if
+                   parse.tag.POS):  # поиск формы нужной части речи
                 parse = parse
                 break
         form = parse.inflect(grammemes)
@@ -69,7 +72,7 @@ class AspectExtractor:
         else:
             return token
 
-    def __normalize(self, tokens:List[str]) -> List[str]:
+    def __normalize(self, tokens: List[str]) -> List[str]:
         """
         Нормализация словосочетания (постановка в начальную форму)
         :param tokens: Список слов словосочетания
@@ -147,7 +150,7 @@ class AspectExtractor:
             text.append(self._PAIRED_L2R.get(p, p))
         return text
 
-    def process(self, text:List[str]) -> str:
+    def process(self, text: List[str]) -> str:
         """
         Обработка текста аспекта: нормализация, балансирование парной пунктуации, детокенизация, капитализация
         :param text: Токенизированный текст
@@ -160,7 +163,7 @@ class AspectExtractor:
         text = text[0].upper() + text[1:]
         return text
 
-    def extract_aspects(self, text:Union[List[str],str]) -> Dict[str,List[str]]:
+    def extract_aspects(self, text: Union[List[str], str]) -> Dict[str, List[str]]:
         """
         Извлечение аспектов из текста
         :param text: Текст (токенизированный или нет)
@@ -183,7 +186,8 @@ class AspectExtractor:
         return {aspect: [self.process(mention) for mention in mentions] for aspect, mentions in
                 extracted_aspects.items()}
 
-    def stringify_extracted_aspects(self, text:Union[List[str],str]=None, extracted_aspects:Dict[str,List[str]]=None) -> str:
+    def stringify_extracted_aspects(self, text: Union[List[str], str] = None,
+                                    extracted_aspects: Dict[str, List[str]] = None) -> str:
         """
         Преобразование словаря извлеченных аспектов в строку
         :param text: Тексты (токенизированные или нет)
