@@ -25,7 +25,7 @@ class Predictor:
         self._class2label = aspects_class2label
         self._heuristic_validator = HeuristicValidator()
 
-    def extract(self, text: Union[str, List[str]], use_heuristics: bool = True, **kwargs) -> List[Tuple[str, str]]:
+    def extract(self, text: Union[str, List[str]], use_heuristics: bool = True) -> List[Tuple[str, str]]:
         """ Извлечение аспектов из входного текста
         :param text: Входной текст, может быть строкой либо уже токенизированным (списком строк)
         :param use_heuristics: Применять ли к полученному результату эвристики
