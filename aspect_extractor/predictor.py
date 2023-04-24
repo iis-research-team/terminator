@@ -56,7 +56,10 @@ class Predictor:
 
         result = self._get_preds_with_tokens(all_bpe_tokens, all_predictions)
         if isinstance(text, list):
-            result = self._align_tokens(text, result)
+            try:
+                result = self._align_tokens(text, result)
+            except:
+                logging.warning('Tokenization alignment failed')
         if use_heuristics:
             result = self._heuristic_validator.validate(result)
         return result

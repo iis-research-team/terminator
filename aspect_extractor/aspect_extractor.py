@@ -1,6 +1,4 @@
-import os
 import nltk
-from tqdm import tqdm
 from collections import defaultdict
 from typing import List, Set, Union, Dict
 import pymorphy2
