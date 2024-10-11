@@ -7,4 +7,6 @@ pymorphy2 == 0.9.1
 pymystem3
 scikit-learn
 tensorflow == 2.5.0
+tf-keras == 2.17.0
+torch == 2.4.1
 transformers == 4.6.0
