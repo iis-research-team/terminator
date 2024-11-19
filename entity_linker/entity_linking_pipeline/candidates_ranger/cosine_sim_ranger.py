@@ -9,12 +9,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 from utils.normalize import normalize_mystem
 from entity_linker.entity_linking_pipeline.candidates_ranger import BaseCandidatesRanger
+from utils.paths import FASTTEXT_MODEL_PATH
 
 
 class CosineSimRanger(BaseCandidatesRanger):
 
     def __init__(self):
-        self._ft_model = ft.load_model('entity_linker/fasttext_model')
+        fasttext_model_path = FASTTEXT_MODEL_PATH
+        self._ft_model = ft.load_model(FASTTEXT_MODEL_PATH)
 
     def range_candidates_set(self, candidates: List[Dict[str, Any]], context: List[str], **kwargs) -> Dict[str, float]:
         _context_vector = self._get_vector_for_phrase(' '.join(context))
