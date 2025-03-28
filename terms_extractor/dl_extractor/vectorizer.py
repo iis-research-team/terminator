@@ -8,7 +8,7 @@ from utils.constants import label2class
 class Vectorizer:
 
     def __init__(self):
-        self._tokenizer = BertTokenizer.from_pretrained('bert-base-multilingual-cased',
+        self._tokenizer = BertTokenizer.from_pretrained('DeepPavlov/rubert-base-cased',
                                                         do_lower_case=False)
 
         self._label2class = label2class

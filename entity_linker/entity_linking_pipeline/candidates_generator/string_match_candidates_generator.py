@@ -17,7 +17,7 @@ class StringMatchCandidatesGenerator(BaseCandidatesGenerator):
     def _get_string_match_candidates(self, normalized_term: str, queries: Set[str]) -> List[Dict[str, Any]]:
         result = list()
         print(f'iter dump for entity [{normalized_term}]...')
-        with open(self._dump_path, 'r') as f:
+        with open(self._dump_path, 'r', encoding='utf-8') as f:
             for line in f:
                 if line == '\n':
                     continue
@@ -32,7 +32,7 @@ class StringMatchCandidatesGenerator(BaseCandidatesGenerator):
                     entity_names.add(entity['label']['value'].lower())
                 if 'alias' in entity:
                     for alias in entity['alias']:
-                        entity_names.add(alias.lower())
+                        entity_names.add(alias['value'].lower())
                 desc = ''
                 if 'description' in entity:
                     desc = entity['description']['value']

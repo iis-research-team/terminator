@@ -14,7 +14,7 @@ class EntityLinkingPipeline:
         self._candidates_generator = candidates_generator
         self._candidates_ranger = candidates_ranger
 
-    def run(self, term: str, context: List[str]):
+    def get_linked_mention(self, term: str, context: List[str]):
         normalized_term = normalize_mystem(term)
         queries = self._query_creator.create_queries_set(normalized_term)
         candidates = self._candidates_generator.create_candidates_set(normalized_term, queries)
