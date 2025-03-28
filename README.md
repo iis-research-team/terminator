@@ -35,7 +35,7 @@ and put it to `terms_extractor/dl_extractor/weights`
  3.2. Download fasttext model from [here](http://files.deeppavlov.ai/embeddings/ft_native_300_ru_wiki_lenta_remstopwords/ft_native_300_ru_wiki_lenta_remstopwords.bin)
  and put it to `entity_linker/fasttext_model`.
 
-4. For aspect extraction download weights file from [here](https://drive.google.com/file/d/1uHjHWm4CC19TPCzVr1Jy-f_XAWr7hyA6/view?usp=sharing)
+4. For aspect extraction download weights file from [here](https://disk.yandex.ru/d/31i9D65Z25cj6Q)
 and put it to `aspect_extractor/weights`
 ## How to use
 
@@ -91,15 +91,13 @@ print(ru_el.get_linked_mention(term, context))
 This module extracts aspects from the raw text.
 
 ```python
-from aspect_extractor import AspectExtractor   
+from aspect_extractor.aspect_extractor import AspectExtractor
 
 extractor = AspectExtractor()
-text = "Определена модель для визуализации связей между объектами и их атрибутами в различных процессах. " \
-           "На основании модели разработан универсальный абстрактный компонент графического пользовательского интерфейса и приведены примеры его программной реализации. " \
-           "Также проведена апробация компонента для решения прикладной задачи по извлечению информации из документов."
-result = extractor.extract(text)
-for token, tag in result:
-    print(f'{token} -> {tag}')
+text = "Определена модель для визуализации связей между объектами и их атрибутами в различных процессах. "
+       "На основании модели разработан универсальный абстрактный компонент графического пользовательского интерфейса и приведены примеры его программной реализации. "
+       "Также проведена апробация компонента для решения прикладной задачи по извлечению информации из документов."
+print(extractor.stringify_extracted_aspects(text = text))
 ```
 
 ## Data
@@ -107,6 +105,7 @@ for token, tag in result:
 [RuSERRC](https://github.com/iis-research-team/ruserrc-dataset) is the dataset of scientific texts in Russian, which is annotated with terms, aspects, linked entities, and relations. 
 
 ## Citation
+
 
 If you find this repository useful, feel free to cite our papers:
 

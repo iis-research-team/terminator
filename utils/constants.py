@@ -41,30 +41,22 @@ RUSSERC_TO_RC_SCIENCE_LABELS = {
 }
 
 aspects_class2label = {
-    0: 'O',
-    1: 'Goal',
-    2: 'Task',
-    3: 'Contrib',
-    4: 'Method',
-    5: 'Tool',
-    6: 'Adv',
-    7: 'Use',
-    8: 'Conc',
-    9: 'Example'
+    0: 'Task',
+    1: 'Contrib',
+    2: 'Method',
+    3: 'Conc'
 }
 
 aspects_label2class = {
-    'O': 0,
-    'Goal': 1,
-    'Task': 2,
-    'Contrib': 3,
-    'Method': 4,
-    'Tool': 5,
-    'Adv': 6,
-    'Use': 7,
-    'Conc': 8,
-    'Example': 9
+    'Task': 0,
+    'Contrib': 1,
+    'Method': 2,
+    'Conc': 3
 }
+
+
+ASPECTS_PRETRAINED_MODEL_NAME = 'bert-base-multilingual-cased'
+ASPECTS_NUM_LABELS = 4
 
 ADDITIONAL_SPECIAL_TOKENS = ["<e1>", "</e1>", "<e2>", "</e2>"]
 RE_LABELS = ["PART_OF", "ISA", "USAGE", "TOOL", "SYNONYMS", "COMPARE", "CAUSE", "NO-RELATION"]

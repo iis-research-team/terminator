@@ -16,5 +16,3 @@ ASPECT_EXTRACTOR_WEIGHTS_PATH = os.path.join(ASPECT_EXTRACTOR_PATH, 'weights', '
 
 WIKIDATA_DUMP_PATH = os.path.join(ENTITY_LINKER_PATH, 'wikidata_dump', 'dump.json')
 FASTTEXT_MODEL_PATH = os.path.join(ENTITY_LINKER_PATH, 'fasttext_model', 'ft_native_300_ru_wiki_lenta_remstopwords.bin')
-
-
